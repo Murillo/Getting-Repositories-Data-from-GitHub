@@ -42,6 +42,7 @@ class RepositoryInformation:
         metadata = r.json() 
         if (metadata['total_count'] > 0):
             info =	{
+                "full_name": metadata['items'][0]['full_name'],
                 "stars": metadata['items'][0]['stargazers_count'],
                 "forks": metadata['items'][0]['forks'],
                 "watchers": metadata['items'][0]['watchers']
