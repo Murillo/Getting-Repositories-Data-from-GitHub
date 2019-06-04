@@ -2,19 +2,19 @@
 This is a simple example to show how easy is to use GitHub API v3 with Python to get data from open repositories.
 
 ## Description of the example
-The GitHub has great API with complete documentation, detailing how to use it to load information from their repositories. Despite this, a lot of developers like to learn new technology by reading code, and this project proposes to explain how to use the GitHub API through a finalized code.
+ GitHub has a great API with complete documentation, detailing how to use it to load information from their repositories. Despite this, a lot of developers like to learn new technology by reading code, and this project proposes to explain how to use the GitHub API through a finalized code.
 
 In this example, the code was made in python and it will load some information from GitHub's repositories through HTTP requests. Firstly, it will be necessary to install the request library.
 ```
 pip install requests
 ```
-In the `github_api.py` file, located in `src` folder, it is possible to see a function called `get_full_name` and a class `RepositoryInformation`. The `get_full_name` will get the URL and extracts only the full name (user name/repository name) of project.
+In the `github_api.py` file, located in the `src` folder, it is possible to see a function called `get_full_name` and a class called  `RepositoryInformation`. The `get_full_name` will get the URL and extracts only the full name (user name/repository name) of project.
 ```python
 def get_full_name(repository_url):
     parsed_uri = urlparse(repository_url)
     return '{uri[1]}/{uri[2]}'.format(uri=parsed_uri.path.split('/'))
 ```
-The `RepositoryInformation` has two methods, one public and another private. The private method (`__get_information`) receives two parameters, the first parameter will receive a repository URL and the second the filter used in GitHub API to filter data. This method will call the function `get_full_name` that it will set their result in the GitHub API URL. The following parameter received will be utilized to define how information the API will filter.
+The `RepositoryInformation` has two methods, one public and another private. The private method (`__get_information`) receives two parameters, the first parameter will receive a repository URL and the second the filter used in the GitHub API to filter data. This method will call the function `get_full_name` and that it will set their result in the GitHub API URL. The following parameter received will be utilized to define how much information the API will filter.
 ```python
 def __get_information(self, repository_url, paramenter):
     # Getting repository full name (user/repository_name)
@@ -36,7 +36,7 @@ def __get_information(self, repository_url, paramenter):
         return info
     return None
 ```
-The parameter `q=` will receive the value and parameters that it will be filtered. However, the fields to search are informed after the `in:`
+The parameter, `q=`, will receive the value and parameters that will be filtered. However, the fields to search are informed after the `in:`
 
 ```
 e.g., https://api.github.com/search/repositories?q=Test%20in:name
@@ -51,7 +51,7 @@ Also, if the request returns thousands of results, it is possible to sort them f
 e.g., https://api.github.com/search/repositories?q=Specification-Patternin:name&sort=stars&order=desc
 ```
 
-The public method (`get_information`) from `RepositoryInformation` class will receive a list of repositories URL and will set it individually for the private method. When the process finishes, it will give back a dictionary list with information such as stars, forks,and watchers.
+The public method (`get_information`) from the `RepositoryInformation` class will receive a list of repositories URL and will set it individually for the private method. When the process finishes, it will give back a dictionary list with information such as stars, forks,and watchers.
 
 ```python
 def get_information(self, repositories_url, paramenter = "full_name"):
@@ -63,7 +63,7 @@ def get_information(self, repositories_url, paramenter = "full_name"):
     return repositories_info
 ```
 
-After installing the `request` library, you will be able to test this code calling the `test.py` in the `src` folder.
+After installing the `request` library, you will be able to test this code by calling the `test.py` in the `src` folder.
 
 ```
 python test.py
